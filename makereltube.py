@@ -11,10 +11,12 @@ dictionary = f.read().splitlines()
 f = open('wordSet.txt', 'r')
 wordSet = f.read().splitlines()
 
-for word in dictionary:
+for dictWord in dictionary:
     print("Testing:")
-    print(word)
-    letters = list(word)
+    print(dictWord)
+    letters = list(dictWord)
+    
+    remainingWords = wordSet
     
     for letter in letters:
         print(letter)
@@ -23,7 +25,7 @@ for word in dictionary:
         
         # If array contains only one entry, we have a winner.
         
-        remainingWords = filter(lambda word: letter in word, wordSet)
+        remainingWords = filter(lambda listWord: letter not in listWord, remainingWords)
         
         print(remainingWords)
         print(len(remainingWords))
