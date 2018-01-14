@@ -5,11 +5,16 @@
 #
 #
 
-f = open('dictionary.txt', 'r')
+f = open('words.txt', 'r')
 dictionary = f.read().splitlines()
+f.close()
 
-f = open('wordSet.txt', 'r')
+f = open('trainStations.txt', 'r')
 wordSet = f.read().splitlines()
+f.close()
+
+f = open('results.txt', 'wa+')
+f.close()
 
 results = []
 
@@ -51,6 +56,10 @@ for dictWord in dictionary:
         print ("Returned a hit "+str(resultsForDictWord))
         for thisResult in resultsForDictWord:
             results.append(thisResult)
+            f = open('results.txt', 'a')
+            f.write(thisResult)
+            f.close()
+
         
             
 print (results)
