@@ -5,7 +5,7 @@
 #
 #
 
-f = open('words.txt', 'r')
+f = open('dictionary.txt', 'r')
 dictionary = f.read().splitlines()
 
 f = open('wordSet.txt', 'r')
@@ -13,46 +13,35 @@ wordSet = f.read().splitlines()
 
 results = []
 
+# For each word in the dictionary, check to see if any words in the word set contain no letters from that dictionary word
+
+def checkLetter(letter,word):
+    print ("Checking letter: "+letter)
+    print ("in Word: "+word)
+    countOfLetter = word.count(letter)
+    print (countOfLetter)
+    return countOfLetter
+    
+
 for dictWord in dictionary:
     print("Testing:")
     print(dictWord)
-    letters = list(dictWord)
+    letters = set(dictWord)
     
-    def checkLetters(dictWord,wordSet):
-        """
-        How many words in the array wordSet contain none of the letters in the dictWord parameter?
-        """
-        print('Checking '+dictWord)
-        
-        wordSetNotMatches = []
-        
-        for word in wordSet:
-            matches = 0
-            print(word)
-            for letter in dictWord:
-                if word.lower().count(letter.lower()) > 0:
-                    print (letter+' is in '+word)
-                    matches += 1
-                else:
-                    print (letter+' is not in '+word)
-            print('Number of matches of '+dictWord+' in '+word+': '+str(matches))
-            if matches == 0:
-                wordSetNotMatches.append(word)
-            
-        print('Checked '+dictWord+'. Words in word set that contain no letters from '+dictWord+': ')
-        print(len(wordSetNotMatches))
-        return wordSetNotMatches
-            
+    print (letters)
     
-    notMatches = checkLetters(dictWord,wordSet)
-    print('')
-    if len(notMatches) == 1:
-        print('Found exactly one word in word set that contains no letters from the word '+dictWord)
-        results.append(dictWord)
-    else:
-        print('Found '+str(len(notMatches))+' words in word set that contain no letters from: '+dictWord)
-    print('')
+    for word in wordSet:
+        totalCount = 0
+        for letter in letters:
+            totalCount += checkLetter(letter,word.lower())
+        print (str(totalCount)+" letters matched from "+dictWord+" in "+word)
+    
+        if totalCount == 0:
+            results.append(dictWord+","+word)
+            
+print (results)
 
-print("")
-print("Words whose letters only appear in one memeber of the word set:")
-print(results)
+    
+    
+    
+    
