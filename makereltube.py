@@ -15,29 +15,43 @@ results = []
 
 # For each word in the dictionary, check to see if any words in the word set contain no letters from that dictionary word
 
-def checkLetter(letter,word):
+def checkLetterInWord(letter,word):
     print ("Checking letter: "+letter)
     print ("in Word: "+word)
     countOfLetter = word.count(letter)
     print (countOfLetter)
     return countOfLetter
     
+def checkDictWordInWordset(dictWord,wordSet):
+    print ("Checking letters from: "+dictWord)
+    letters = set(dictWord.lower())
+    print (letters)
+    wordSetHits = []
+    for word in wordSet:
+        print ("in Word: "+word)
+        totalCount = 0
+        for letter in letters:
+            totalCount += checkLetterInWord(letter,word.lower())
+        print (str(totalCount)+" letters matched from "+dictWord+" in "+word)
+    
+        if totalCount == 0:
+            wordSetHits.append(dictWord+","+word)
+
+    return wordSetHits
+        
+    
 
 for dictWord in dictionary:
     print("Testing:")
     print(dictWord)
-    letters = set(dictWord)
     
-    print (letters)
+    resultsForDictWord = checkDictWordInWordset(dictWord,wordSet)
     
-    for word in wordSet:
-        totalCount = 0
-        for letter in letters:
-            totalCount += checkLetter(letter,word.lower())
-        print (str(totalCount)+" letters matched from "+dictWord+" in "+word)
-    
-        if totalCount == 0:
-            results.append(dictWord+","+word)
+    if len(resultsForDictWord) > 0:
+        print ("Returned a hit "+str(resultsForDictWord))
+        for thisResult in resultsForDictWord:
+            results.append(thisResult)
+        
             
 print (results)
 
