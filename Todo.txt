@@ -3,3 +3,6 @@ todo:
 Need to clean dictionary - make function to accept or reject each word?
 Need to display progress in dictionary
 Need to write clean results output with new line characters
+Remove Verbosity from console output
+Write Tests to make sure code functions (i.e. set special input and output dictionaries with known results and make sure they return the correct number of results)
+
