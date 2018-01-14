@@ -1,0 +1,5 @@
+todo:
+
+Need to clean dictionary - make function to accept or reject each word?
+Need to display progress in dictionary
+Need to write clean results output with new line characters
