@@ -5,7 +5,7 @@
 #
 #
 
-f = open('words.txt', 'r')
+f = open('testCleanDict.txt', 'r')
 dictionary = f.read().splitlines()
 f.close()
 
@@ -13,7 +13,7 @@ f = open('trainStations.txt', 'r')
 wordSet = f.read().splitlines()
 f.close()
 
-f = open('results.txt', 'wa+')
+f = open('results.txt', 'w+')
 f.close()
 
 results = []
@@ -52,7 +52,7 @@ for dictWord in dictionary:
     
     resultsForDictWord = checkDictWordInWordset(dictWord,wordSet)
     
-    if len(resultsForDictWord) > 0:
+    if len(resultsForDictWord) == 1:
         print ("Returned a hit "+str(resultsForDictWord))
         for thisResult in resultsForDictWord:
             results.append(thisResult)
